@@ -11,41 +11,23 @@ VAL_SPLIT = 0.2 # validation set佔train set的比例
 STUDENT_CNN_LR = 1e-5
 LR_FACTOR = 0.4 # new_lr = lr * factor.
 LR_PATIENCE = 3 # umber of epochs with no improvement after which learning rate will be reduced
-MODEL_NAME = 'tftest'.hdf5' # CNN (without KD) model name
+MODEL_NAME = 'tftest.hdf5' # CNN (without KD) model name
 
 ### Setup ###
 
 import numpy as np
-import pandas as pd
 import tensorflow as tf
-
-import matplotlib.pyplot as plt
-from glob import *
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import os
-import tensorflow as tf
-import scipy.special
-import matplotlib.pyplot as plt
-
-from sklearn.model_selection import train_test_split, StratifiedKFold, learning_curve
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, scale
-from sklearn.metrics import roc_auc_score, confusion_matrix, accuracy_score, classification_report
 
 from tensorflow import keras
-from tensorflow.keras.applications.resnet50 import ResNet50
-from tensorflow.keras.layers import Activation, Dropout, Flatten, Dense, GlobalMaxPooling2D, BatchNormalization, Input, Conv2D, MaxPool2D, GlobalAveragePooling2D
-from tensorflow.keras.callbacks import ModelCheckpoint
-from tensorflow.keras import metrics, layers, Sequential
+from tensorflow.keras import Sequential
+from tensorflow.keras import layers
+from tensorflow.keras.layers import Activation, Dropout, Flatten, Dense, Input, Conv2D, MaxPool2D
 from tensorflow.keras.optimizers import Adam 
 from tensorflow.keras.models import Model
-from tensorflow.keras import layers
-from tensorflow.keras import regularizers
-from tensorflow.keras.losses import binary_crossentropy, KLDivergence, categorical_crossentropy, SparseCategoricalCrossentropy
+from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.callbacks import ModelCheckpoint, LearningRateScheduler, EarlyStopping, ReduceLROnPlateau
 
-from tqdm import *
-from scipy.stats import norm, rankdata
+from sklearn.metrics import accuracy_score
 
 ### Load the dataset ###
 
@@ -59,7 +41,7 @@ X_test = np.expand_dims(X_test, axis=-1)
 X_train = np.repeat(X_train, 3, axis=-1)
 X_test = np.repeat(X_test, 3, axis=-1)
 
-# resize the input shape , i.e. old shape: 28, new shape: 32 (cifar is 32 already)
+# resize the input shape , i.e. old shape: 28, new shape: 32
 X_train = tf.image.resize(X_train, TARGET_SIZE) # if we want to resize 
 X_test = tf.image.resize(X_test, TARGET_SIZE) # if we want to resize 
 
@@ -72,8 +54,6 @@ data_augmentation_student = tf.keras.Sequential([
     tf.keras.layers.experimental.preprocessing.Rescaling(scale=1/255),
     layers.experimental.preprocessing.Normalization()
 ])
-
-### Student model without knowkedge distillation ###
 
 # images in cifar is small, use LeNet
 student_CNN = keras.Sequential(
