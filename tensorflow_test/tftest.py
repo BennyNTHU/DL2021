@@ -98,7 +98,7 @@ CNN_test_acc = accuracy_score(y_prediction_S, y_test_int)
 ### Collect the results ###
 
 with open('result.txt',  'a') as file_obj:
-    file_obj.write('================EXP_NAME: '+ EXP_NAME+ '================' + '\n')
+    file_obj.write('================tensorflow test================' + '\n')
     file_obj.write('CNN_epoch: '         + str(CNN_epoch)         + '\n')
     file_obj.write('CNN_train_acc: '     + str(CNN_train_acc)     + '\n')
     file_obj.write('CNN_val_acc: '       + str(CNN_val_acc)       + '\n')

@@ -1,0 +1,8 @@
+conda create --name tf5 python=3.8
+conda activate tf5
+conda install -c conda-forge cudnn=8.1
+conda list
+pip install tensorflow-gpu==2.5
+conda list
+conda install scikit-learn
+python tftest.py
