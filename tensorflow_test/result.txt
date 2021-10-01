@@ -1,5 +1,0 @@
-================tensorflow test================
-CNN_epoch: 50
-CNN_train_acc: 0.9843541383743286
-CNN_val_acc: 0.9829999804496765
-CNN_test_acc: 0.9826

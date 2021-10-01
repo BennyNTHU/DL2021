@@ -1,8 +1,67 @@
-conda create --name tf5 python=3.8
-conda activate tf5
+我所使用的作業系統是Ubuntu20.04，顯卡是Nvidia Geforce RTX 3060。為了本組分工合作的工作順利，我希望能使用github來進行分工，而為了避免各位組員不同版本所造成的衝突，希望能藉由以下的方式統一本組的工作環境，以避免不必要的麻煩。
+
+
+step 1. 首先，無論各位組員的作業系統為何，請先安裝顯卡的驅動程式。例如Nvidia Geforce系列的顯卡可在
+
+https://www.nvidia.com/zh-tw/geforce/drivers/
+
+下載。如果是nvidia系列的顯卡，如果在terminal輸入nvidia-smi能跳出監視顯卡的畫面的話，就可以跳過這一步
+
+step 2. 接著安裝anaconda，並建立一個python3.8的虛擬環境：
+
+conda create --name tf python=3.8
+conda activate tf
+
+step3. 接著，根據以下連結中
+
+https://www.tensorflow.org/install/source?fbclid=IwAR0j2Fxa6ib6MaJiSbiKS868-My6q5ZpGekGZ8oNgHBtOdBXp8Jbk4pd7B0
+
+「經過測試的建構設定－Linux GPU」一節中的對照表，請用以下的指令安裝所需的package
+
 conda install -c conda-forge cudnn=8.1
+
+接著使用
+
 conda list
+
+確認cudnn的版本是不是8.1，以及cudatoolkit的版本是不是11.2。
+
+step 4. 如果沒有問題（理論上也不該有問題），再使用
+
 pip install tensorflow-gpu==2.5
+
+安裝tensorflow-gpu。如果這一步有問題，可以先使用
+
+pip install --upgrade pip
+
+來更新pip後，再嘗試一次。
+
+完成安裝tensorflow-gpu後，使用
+
 conda list
+
+確認cudnn的版本是不是8.1，以及cudatoolkit的版本是不是11.2，以及tensorflow-gpu的版本是不是2.5。
+
+step 5. 使用
+
 conda install scikit-learn
+
+安裝scikit-learn。
+
+step 6. 利用
+
+git clone https://github.com/BennyNTHU/DL2021.git 
+
+把整個專案抓下來，最後跑
+
 python tftest.py
+
+並使用
+
+nvidia-smi（或你顯卡的驅動程式）
+
+來檢測是否使用GPU。如果是的話，等程式跑完，打開result.txt，應該要出現以
+
+===============tensorflow test ================
+
+開頭的測試結果。如此一來就可以確認tensorflow已經正確安裝完成。
