@@ -20,7 +20,11 @@ https://www.tensorflow.org/install/source?fbclid=IwAR0j2Fxa6ib6MaJiSbiKS868-My6q
 
 conda install -c conda-forge cudnn=8.1
 
-接著使用
+理論上會同時安裝cudatoolkit11.2。若無法同時安裝cudatoolkit 11.2或是一併安裝的cudatoolkit的版本不是11.2的話，請再使用
+
+conda install -c conda-forge cudatoolkit=11.2
+
+來安裝。接著使用
 
 conda list
 
