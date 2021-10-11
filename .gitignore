@@ -1,5 +1,4 @@
 **/*.hdf5
-**/*.png
 **/*.h5
 **/*.pyc
 **/*.ipynb_checkpoints
