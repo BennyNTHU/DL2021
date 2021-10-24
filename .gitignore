@@ -2,3 +2,5 @@
 **/*.h5
 **/*.pyc
 **/*.ipynb_checkpoints
+**/*.zip
+**/*.csv
