@@ -26,33 +26,26 @@ def fetch_pubday(soup):
     return pub_day
 
 def fetch_channel(soup):
-    
     channel = soup.article['data-channel']
     return channel
 
 def fetch_img_count(soup):
-
     c = 0
     find_all_images = soup.find_all('img')
-
     for i in find_all_images:
         c = c+1
     return c
 
 def fetch_topics(soup):
-
     footer = soup.footer
     ta = footer.find_all('a')
     topic = []
-
     for t in ta:
         topic.append(t.get_text())
     topic_text = ' '.join(topic)
-
     return topic_text
 
 def fetch_authors(soup):
-
     footer = soup.span
     if footer != None:
         ta = footer.findAll('a')
@@ -65,11 +58,9 @@ def fetch_authors(soup):
             authors_text = ''.join(authors)
     else:
         authors_text   = 'NaN'
-
     return authors_text
 
 def fetch_titles(soup):
-    
     footer = soup.h1
     if footer != None:
         titles = footer.get_text()
@@ -78,7 +69,6 @@ def fetch_titles(soup):
     return titles
 
 def fetch_social_media_count(soup):
-
     c = 0
     for frame in soup("iframe"):
         if frame.get('src').find("youtube") != None:
@@ -87,9 +77,7 @@ def fetch_social_media_count(soup):
             c = c+1
         elif frame.get('src').find("vine") != None:
             c = c+1
-
     return c
-
 
 def fetch_href(soup):
     all_a_tags = soup.find_all('a', href=True)
@@ -108,9 +96,7 @@ def get_some_n_features(titles, contents):
     n_non_stop_words = []
     n_non_stop_unique_tokens = []
 
-
     for title, content in zip(titles, contents):
-
         title_tokens = process(title)
         n_tokens_titles.append(len(title_tokens))
 
@@ -140,16 +126,8 @@ def get_some_n_features(titles, contents):
 def get_sentiment_features(titles, contents):
     global_sentiment_polarity = []
     global_subjectivity = []
-    
-#     global_rate_positive_words = []
-#     global_rate_negative_words = []
-    
-#     rate_positive_words = []
-#     rate_negative_words = []
-    
     title_subjectivity_list = []
     title_sentiment_polarity_list = []
-    
     abs_title_subjectivity = []
     abs_title_sentiment_polarity = []
     
@@ -157,14 +135,12 @@ def get_sentiment_features(titles, contents):
         title_blob = TextBlob(title)
         title_polarity = title_blob.sentiment.polarity
         title_subjectivity = title_blob.sentiment.subjectivity
-
-        
+       
         title_sentiment_polarity_list.append(title_polarity)
         title_subjectivity_list.append(title_subjectivity)
         abs_title_subjectivity.append(abs(title_subjectivity))
         abs_title_sentiment_polarity.append(abs(title_polarity))
-        
-        
+              
         content_blob = TextBlob(content)
         content_polarity = content_blob.sentiment.polarity
         content_subjectivity = content_blob.sentiment.subjectivity
@@ -175,9 +151,6 @@ def get_sentiment_features(titles, contents):
 abs_title_subjectivity, abs_title_sentiment_polarity
 
 def get_word_sentiment_features(contents):
-#     global_rate_positive_words = []
-#     global_rate_negative_words = []
-    
     rate_positive_words = []
     rate_negative_words = []
     avg_positive_polarity = []
@@ -203,20 +176,17 @@ def get_word_sentiment_features(contents):
         for token in content_tokens:
             blob = TextBlob(token)
             sentiment_score = blob.sentiment.polarity
-#             positive
-            if sentiment_score > 0.0:
+
+            if sentiment_score > 0.0: # positive
                 pos_count += 1
                 pos_score += sentiment_score
-                
                 if sentiment_score < min_pos_polarity:
                     min_pos_polarity = sentiment_score
                 if sentiment_score > max_pos_polarity:
                     max_pos_polarity = sentiment_score
-#             negative
-            elif sentiment_score < 0.0:
+            elif sentiment_score < 0.0: # negative
                 neg_count += 1
                 neg_score += sentiment_score
-                
                 if sentiment_score < min_neg_polarity:
                     min_neg_polarity = sentiment_score
                 if sentiment_score > max_neg_polarity:
@@ -244,10 +214,7 @@ def get_word_sentiment_features(contents):
             max_neg_polarity = 0.0
         else:
             neg_score /= neg_count
-
-            
-        
-        
+  
         pos_rate = pos_count / len(content_tokens)
         neg_rate = neg_count / len(content_tokens)
         rate_positive_words.append(pos_rate)
@@ -260,8 +227,7 @@ def get_word_sentiment_features(contents):
         avg_negative_polarity.append(neg_score)
         min_negative_polarity.append(min_neg_polarity)
         max_negative_polarity.append(max_neg_polarity)
-        
-        
+
     return rate_positive_words, rate_negative_words, avg_positive_polarity, min_positive_polarity, max_positive_polarity,\
 avg_negative_polarity, min_negative_polarity, max_negative_polarity
 
@@ -288,14 +254,13 @@ def get_all_datas(texts):
         img_counts.append(fetch_img_count(soup))
         titles.append(fetch_titles(soup))
         social_media_counts.append(fetch_social_media_count(soup))
-#         input()
-        
+
+        # input()
         num_href, num_self_href = fetch_href(soup)
         num_hrefs.append(num_href)
         num_self_hrefs.append(num_self_href)
         pub_days.append(fetch_pubday(soup))
         
-
     return days, pub_days, channels, img_counts, topics, authors, titles, social_media_counts, contents, num_hrefs, num_self_hrefs
 
 def extra_stopwords():
