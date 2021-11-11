@@ -4,3 +4,12 @@
 **/*.ipynb_checkpoints
 **/*.zip
 **/*.csv
+**/*.tfrecord
+**/*.jpg
+**/*.JPG
+**/*.jpeg
+**/*.JPEG
+**/*.png
+**/*.PNG
+**/*.gif
+**/*.GIF
