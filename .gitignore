@@ -13,3 +13,5 @@
 **/*.PNG
 **/*.gif
 **/*.GIF
+**/*.index
+**/checkpoints/*.*
