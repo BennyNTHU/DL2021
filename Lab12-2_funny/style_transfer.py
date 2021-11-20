@@ -2,18 +2,18 @@
 # coding: utf-8
 
 # Hyper parameter definition
-EPOCHS=10
-STEP_PER_EPOCH=100
-STYLE_WEIGHT=0.2
-CONTENT_WEIGHT=1
-TOTAL_VARIATION_WEIGHT=0.2
+EPOCHS=5
+STEP_PER_EPOCH=30
+STYLE_WEIGHT=0.1
+CONTENT_WEIGHT=0.1
+TOTAL_VARIATION_WEIGHT=0.1
 MAX_DIM = 512
 
 # Paths
-CONTENT_PATH = './input/mayuchi.jpg'
+CONTENT_PATH = './input/mayuchi4.jpg'
 STYLE_PATH = './input/mnls.jpeg'
 OUTPUT_DIR = './output/'
-OUTPUT_NAME = 'style_transfer_mayuchi_'
+OUTPUT_NAME = 'style_transfer_dinner_mayuchi_'
 
 # Content layer where will pull our feature maps
 CONTENT_LAYERS = ['block5_conv2'] 
@@ -294,7 +294,7 @@ def my_train_step(image, opt, style_weight, content_weight, total_variation_weig
 
 
 def train_style_transfer(image, 
-                         opt=tf.optimizers.Adam(learning_rate=0.02, beta_1=0.99, epsilon=1e-1),
+                         opt=tf.optimizers.Adam(learning_rate=1e-5, beta_1=0.99, epsilon=1e-4),
                          epochs=10, #要多少epoch? 一個epoch show 1張圖
                          steps_per_epoch=100, #每個epoch要train多少step
                          style_weight=0.1, 
