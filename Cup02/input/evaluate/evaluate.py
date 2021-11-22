@@ -828,7 +828,7 @@ def evaluate(predict_file, output_csv_file):
 
 
     classes_name =  ["aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train","tvmonitor"]
-    gt_file = open("./evaluate/test_ans_encrypt.txt", 'r')
+    gt_file = open("./input/evaluate/test_ans_encrypt.txt", 'r')
     cipher_suite = Fernet(key)
 
     #gt_boundingBoxes = BoundingBoxes()
