@@ -18,3 +18,5 @@
 **/checkpoint
 **/*.xml
 **/ckpts/
+**/*.ttf
+**/ckpt*.*
