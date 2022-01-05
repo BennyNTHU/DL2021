@@ -1,5 +1,5 @@
-我們使用了BERT language model[1]來生成embedding。另外，根據[2]，我們使用了各種不同data augmentaton，包含調整圖片明度以及左右翻轉。在GAN的架構上，我們參考了[3]，雖然執行的task不同，但我們使用ResNet101作為generator，而為了提升discriminator的效能，我們參考丞恩在工研院實習的經驗，他曾經發現ResNet50在flower102 dataset有很好的表現，因此
-3. 把GAN的架構改成ResNet50。另外為了提升訓練的效率以及表現，我們將GAN改為improved WGAN。
+我們使用了BERT language model[1]來生成embedding。另外，根據[2]，我們使用了各種不同data augmentaton，包含調整圖片明度以及左右翻轉。在GAN的架構上，我們參考了[3]，雖然執行的task不同，但我們使用ResNet101作為generator，而為了提升discriminator的效能，我們參考丞恩在工研院實習的經驗，他曾經發現ResNet50在flower102 dataset有很好的表現，因此把GAN的架構改成ResNet50。另外為了提升訓練的效率以及表現，我們將GAN改為improved WGAN。
+除此之外，我們也有嘗試不同的架構，例如自行搭建四層卷積層以及Batch Normalization交疊所搭建而成的神經網路作為generator，並使用一個類似的結構作為discriminator。
 
 [1] https://github.com/google-research/bert
 [2] N.T. Tran et al. On Data Augmentation for GAN Training, https://arxiv.org/pdf/2006.05338.pdf
