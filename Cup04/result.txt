@@ -1,18 +1,14 @@
-================RUN TIME: 2022-01-12 05:40:49 PM================
-model_name: ResNet50_cup04
-epoch: 10
-training time: 0:02:34.915075
-train_acc: 0.9728860259056091
-val_acc: 0.59375
 ================RUN TIME: 2022-01-12 06:18:18 PM================
 model_name: ResNet50_cup04
 epoch: 11
 training time: 0:02:49.050705
 train_acc: 0.966911792755127
 val_acc: 0.59375
+note: data augmentation
 ================RUN TIME: 2022-01-12 06:55:31 PM================
 model_name: ResNet50_cup04
 epoch: 27
 training time: 0:13:51.123599
 train_acc: 0.9861866235733032
 val_acc: 0.8167613744735718
+note: data augmentation + mixup
