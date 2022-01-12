@@ -1,0 +1,6 @@
+================RUN TIME: 2022-01-12 05:40:49 PM================
+model_name: ResNet50_cup04
+epoch: 10
+training time: 0:02:34.915075
+train_acc: 0.9728860259056091
+val_acc: 0.59375
