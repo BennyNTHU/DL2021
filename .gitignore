@@ -1,7 +1,7 @@
 **/*.hdf5
 **/*.h5
 **/*.pyc
-**/*.ipynb_checkpoints
+**/.ipynb_checkpoints/*.*
 **/*.zip
 **/*.csv
 **/*.tfrecord
